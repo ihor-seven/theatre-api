@@ -18,7 +18,6 @@ router.register(r"plays", PlayViewSet)
 router.register(r"theatre-halls", TheatreHallViewSet)
 router.register(r"performances", PerformanceViewSet)
 router.register(r"reservations", ReservationViewSet)
-router.register(r"reservations", ReservationViewSet)
 router.register(r"tickets", TicketViewSet)
 
 urlpatterns = [
