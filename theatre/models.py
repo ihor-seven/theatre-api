@@ -1,3 +1,42 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Actor(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+
+class Play(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    actor = models.ManyToManyField(Actor)
+
+
+class TheatreHall(models.Model):
+    name = models.CharField(max_length=100)
+    rows = models.IntegerField()
+    seats_in_row = models.IntegerField()
+
+
+class Performance(models.Model):
+    play = models.ForeignKey(Play, on_delete=models.CASCADE)
+    theatre_hall = models.ForeignKey(TheatreHall, on_delete=models.CASCADE)
+    show_time = models.DateTimeField()
+
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Ticket(models.Model):
+    row = models.IntegerField()
+    seat = models.IntegerField()
+    performance = models.ForeignKey(Performance, on_delete=models.CASCADE)
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
