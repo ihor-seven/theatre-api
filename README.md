@@ -21,6 +21,11 @@ The API will be available at:
 http://127.0.0.1:8000/api/
 
 
+## Demo Account
+Login: user
+Password: user1234
+
+
 ### Initial Configuration
 
 Default database: SQLite
