@@ -6,24 +6,69 @@
 A Django + Django REST Framework project that provides endpoints for managing theatre plays, actors, genres, halls, performances, reservations, and tickets.  
 Includes **JWT authentication** for secure access.
 
-## Installing / Getting started
+## Running locally
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/<your-username>/theatre-api.git
+cd theatre-api
+```
+
+### 2. Create virtual environment
 
 ```bash
-git clone https://github.com/ihor-seven/theatre-api.git
-cd theatre-api
-pip install -r requirements.txt
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate 
+```
+
+### 3. Install dependencies
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate 
+```
+
+### 4. Configure environment variables
+
+Create a .env file in the project root with values:
+
+DB_HOST=localhost
+DB_NAME=theatre_db
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+SECRET_KEY=your-secret-key
+
+### 5. Apply migrations
+
+```bash
 python manage.py migrate
+```
+
+### 6. Create superuser
+
+```bash
+python manage.py createsuperuser
+```
+
+
+### 7. Run server
+
+```bash
 python manage.py runserver
 ```
 
-The API will be available at:
-http://127.0.0.1:8000/api/
+## Server will be available at:
 
+API root → http://127.0.0.1:8000/api/
+Admin panel → http://127.0.0.1:8000/admin/
+Swagger docs → http://127.0.0.1:8000/api/docs/
 
 ## Demo Account
+
 Login: user
 Password: user1234
-
 
 ### Initial Configuration
 
@@ -37,6 +82,7 @@ If using Docker:
 
 ```shell
 docker-compose up --build
+docker-compose up
 ```
 
 ## Features
