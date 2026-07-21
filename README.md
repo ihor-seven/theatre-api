@@ -8,7 +8,6 @@ Includes **JWT authentication** for secure access.
 
 ## Installing / Getting started
 
-### Minimal setup
 ```bash
 git clone https://github.com/ihor-seven/theatre-api.git
 cd theatre-api
@@ -32,17 +31,6 @@ Default database: SQLite
 Production recommended: PostgreSQL (configure in settings.py)
 Authentication: JWT (djangorestframework-simplejwt)
 
-## Developing
-
-Local development
-
-```shell
-git clone https://github.com/ihor-seven/theatre-api.git
-cd theatre-api
-pip install -r requirements.txt
-python manage.py runserver
-```
-
 ### Building
 
 If using Docker:
@@ -50,17 +38,6 @@ If using Docker:
 ```shell
 docker-compose up --build
 ```
-
-### Deploying / Publishing
-
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy awesome-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
 
 ## Features
 
