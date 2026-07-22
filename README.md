@@ -1,5 +1,3 @@
-![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
-
 # Theatre API
 > REST API for theatre plays, halls, tickets, and reservations
 
@@ -122,3 +120,6 @@ Submit a Pull Request
 Repository: https://github.com/ihor-seven/theatre-api
 Django docs: https://docs.djangoproject.com/
 DRF docs: https://www.django-rest-framework.org/
+
+## DB Structure
+![Database Schema](docs/theatre.png)
