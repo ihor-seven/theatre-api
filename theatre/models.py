@@ -42,19 +42,24 @@ class Performance(models.Model):
     show_time = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.play.title} at {self.show_time.strftime('%Y-%m-%d %H:%M')}"
+        return (
+            f"{self.play.title} at {self.show_time.strftime('%Y-%m-%d %H:%M')}"
+        )
 
 
 class Reservation(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="reservations"
+        related_name="reservations",
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Reservation by {self.user} on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        return (
+            f"Reservation by {self.user} "
+            f"on {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        )
 
 
 class Ticket(models.Model):
@@ -64,4 +69,6 @@ class Ticket(models.Model):
     seat = models.IntegerField()
 
     def __str__(self):
-        return f"Ticket {self.row}-{self.seat} for {self.performance.play.title}"
+        return (
+            f"Ticket {self.row}-{self.seat} for {self.performance.play.title}"
+        )

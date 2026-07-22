@@ -8,13 +8,16 @@ User = get_user_model()
 
 @pytest.mark.django_db
 def test_create_actor_as_admin():
-    admin = User.objects.create_superuser("admin", "admin@example.com", "pass1234")
+    admin = User.objects.create_superuser(
+        "admin", "admin@example.com", "pass1234"
+    )
     client = APIClient()
     client.force_authenticate(user=admin)
-    response = client.post("/api/actors/", {
-        "first_name": "John",
-        "last_name": "Doe"
-    }, format="json")
+    response = client.post(
+        "/api/actors/",
+        {"first_name": "John", "last_name": "Doe"},
+        format="json",
+    )
     assert response.status_code == 201
     assert response.data["first_name"] == "John"
     assert response.data["last_name"] == "Doe"
@@ -24,16 +27,19 @@ def test_create_actor_as_admin():
 @pytest.mark.django_db
 def test_create_actor_as_anonymous():
     client = APIClient()
-    response = client.post("/api/actors/", {
-        "first_name": "Jane",
-        "last_name": "Doe"
-    }, format="json")
+    response = client.post(
+        "/api/actors/",
+        {"first_name": "Jane", "last_name": "Doe"},
+        format="json",
+    )
     assert response.status_code == 401
 
 
 @pytest.mark.django_db
 def test_list_actors_as_admin():
-    admin = User.objects.create_superuser("admin", "admin@example.com", "pass1234")
+    admin = User.objects.create_superuser(
+        "admin", "admin@example.com", "pass1234"
+    )
     Actor.objects.create(first_name="Actor", last_name="One")
     Actor.objects.create(first_name="Actor", last_name="Two")
     client = APIClient()
@@ -46,14 +52,17 @@ def test_list_actors_as_admin():
 
 @pytest.mark.django_db
 def test_update_actor_as_admin():
-    admin = User.objects.create_superuser("admin", "admin@example.com", "pass1234")
+    admin = User.objects.create_superuser(
+        "admin", "admin@example.com", "pass1234"
+    )
     actor = Actor.objects.create(first_name="Old", last_name="Name")
     client = APIClient()
     client.force_authenticate(user=admin)
-    response = client.put(f"/api/actors/{actor.id}/", {
-        "first_name": "New",
-        "last_name": "Name"
-    }, format="json")
+    response = client.put(
+        f"/api/actors/{actor.id}/",
+        {"first_name": "New", "last_name": "Name"},
+        format="json",
+    )
     assert response.status_code == 200
     actor.refresh_from_db()
     assert actor.first_name == "New"
@@ -61,7 +70,9 @@ def test_update_actor_as_admin():
 
 @pytest.mark.django_db
 def test_delete_actor_as_admin():
-    admin = User.objects.create_superuser("admin", "admin@example.com", "pass1234")
+    admin = User.objects.create_superuser(
+        "admin", "admin@example.com", "pass1234"
+    )
     actor = Actor.objects.create(first_name="To", last_name="Delete")
     client = APIClient()
     client.force_authenticate(user=admin)

@@ -6,8 +6,9 @@ from .models import (
     TheatreHall,
     Performance,
     Reservation,
-    Ticket
+    Ticket,
 )
+
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,12 +24,13 @@ class ActorSerializer(serializers.ModelSerializer):
 
 class PlaySerializer(serializers.ModelSerializer):
     genre = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all())
-    actor = serializers.PrimaryKeyRelatedField(queryset=Actor.objects.all(), many=True)
+    actor = serializers.PrimaryKeyRelatedField(
+        queryset=Actor.objects.all(), many=True
+    )
 
     class Meta:
         model = Play
         fields = ["id", "title", "description", "genre", "actor"]
-
 
 
 class PlayDetailSerializer(serializers.ModelSerializer):
@@ -48,7 +50,9 @@ class TheatreHallSerializer(serializers.ModelSerializer):
 
 class PerformanceSerializer(serializers.ModelSerializer):
     play = serializers.PrimaryKeyRelatedField(queryset=Play.objects.all())
-    theatre_hall = serializers.PrimaryKeyRelatedField(queryset=TheatreHall.objects.all())
+    theatre_hall = serializers.PrimaryKeyRelatedField(
+        queryset=TheatreHall.objects.all()
+    )
 
     class Meta:
         model = Performance
@@ -66,8 +70,12 @@ class ReservationSerializer(serializers.ModelSerializer):
 
 
 class TicketSerializer(serializers.ModelSerializer):
-    performance = serializers.PrimaryKeyRelatedField(queryset=Performance.objects.all())
-    reservation = serializers.PrimaryKeyRelatedField(queryset=Reservation.objects.all())
+    performance = serializers.PrimaryKeyRelatedField(
+        queryset=Performance.objects.all()
+    )
+    reservation = serializers.PrimaryKeyRelatedField(
+        queryset=Reservation.objects.all()
+    )
 
     class Meta:
         model = Ticket
@@ -81,4 +89,3 @@ class TicketDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = ["id", "row", "seat", "performance", "reservation"]
-

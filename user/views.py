@@ -5,9 +5,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer
 
-
-
 User = get_user_model()
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -25,9 +24,13 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
+        return Response(
+            UserSerializer(user).data, status=status.HTTP_201_CREATED
+        )
 
-    @action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
+    @action(
+        detail=False, methods=["get"], permission_classes=[IsAuthenticated]
+    )
     def me(self, request):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)

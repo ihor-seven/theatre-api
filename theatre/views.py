@@ -1,5 +1,10 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, BasePermission, SAFE_METHODS
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    BasePermission,
+    SAFE_METHODS,
+)
 from .models import (
     Genre,
     Actor,
@@ -7,7 +12,7 @@ from .models import (
     TheatreHall,
     Performance,
     Reservation,
-    Ticket
+    Ticket,
 )
 from .serializers import (
     GenreSerializer,
@@ -18,9 +23,8 @@ from .serializers import (
     ReservationSerializer,
     TicketSerializer,
     PlayDetailSerializer,
-    TicketDetailSerializer
+    TicketDetailSerializer,
 )
-
 
 
 class ReadOnlyOrAdmin(BasePermission):

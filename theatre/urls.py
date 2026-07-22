@@ -8,7 +8,7 @@ from .views import (
     TheatreHallViewSet,
     PerformanceViewSet,
     ReservationViewSet,
-    TicketViewSet
+    TicketViewSet,
 )
 
 router = DefaultRouter()
