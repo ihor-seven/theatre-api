@@ -122,4 +122,4 @@ Django docs: https://docs.djangoproject.com/
 DRF docs: https://www.django-rest-framework.org/
 
 ## DB Structure
-![Database Schema](docs/theatre.png)
+![Database Schema](docs/db_theatre.png)
