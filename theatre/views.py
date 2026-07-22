@@ -16,7 +16,9 @@ from .serializers import (
     TheatreHallSerializer,
     PerformanceSerializer,
     ReservationSerializer,
-    TicketSerializer
+    TicketSerializer,
+    PlayDetailSerializer,
+    TicketDetailSerializer
 )
 
 
@@ -52,8 +54,12 @@ class ActorViewSet(viewsets.ModelViewSet):
 
 class PlayViewSet(viewsets.ModelViewSet):
     queryset = Play.objects.all()
-    serializer_class = PlaySerializer
     permission_classes = [ReadOnlyOrAdmin]
+
+    def get_serializer_class(self):
+        if self.action in ["list", "retrieve"]:
+            return PlayDetailSerializer
+        return PlaySerializer
 
 
 class TheatreHallViewSet(viewsets.ModelViewSet):
@@ -87,14 +93,13 @@ class ReservationViewSet(viewsets.ModelViewSet):
     serializer_class = ReservationSerializer
     permission_classes = [IsAuthenticated, ReservationPermission]
 
-    def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
-
 
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
     permission_classes = [IsAuthenticated, TicketPermission]
 
-    def get_queryset(self):
-        return Ticket.objects.filter(reservation__user=self.request.user)
+    def get_serializer_class(self):
+        if self.action in ["list", "retrieve"]:
+            return TicketDetailSerializer
+        return TicketSerializer
