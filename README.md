@@ -101,6 +101,15 @@ DATABASES → SQLite by default, PostgreSQL for production
 JWT → endpoints for tokens (api/token/, api/token/refresh/)
 STATIC/MEDIA → configured in settings.py
 
+## Running tests
+
+All tests are written with pytest and run inside Docker.
+
+Run all tests:
+```bash
+docker compose run theatre pytest theatre/tests/
+```
+
 ## Contributing
 
 If you’d like to contribute:
