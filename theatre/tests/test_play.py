@@ -16,7 +16,8 @@ def test_list_plays_as_anonymous():
     response = client.get("/api/plays/")
     assert response.status_code == 200
     assert "results" in response.data
-    assert response.data["results"][0]["title"] == "Hamlet"
+    assert response.data["results"][0]["title"] == play.title
+
 
 
 @pytest.mark.django_db
