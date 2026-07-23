@@ -5,7 +5,7 @@ from rest_framework.permissions import (
     BasePermission,
     SAFE_METHODS,
 )
-from .models import (
+from theatre.models import (
     Genre,
     Actor,
     Play,
@@ -14,7 +14,7 @@ from .models import (
     Reservation,
     Ticket,
 )
-from .serializers import (
+from theatre.serializers import (
     GenreSerializer,
     ActorSerializer,
     PlaySerializer,
