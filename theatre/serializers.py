@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (
+from theatre.models import (
     Genre,
     Actor,
     Play,
